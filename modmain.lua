@@ -1,0 +1,473 @@
+Assets = {
+	Asset("ATLAS", "images/icons.xml"),
+	Asset("IMAGE", "images/icons.tex"),
+}
+
+local CreateEntity = GLOBAL.CreateEntity
+
+local minimap_atlas_registry = {}
+
+local function TryAddAtlasToRuntime(atlas)
+	local minimap = GLOBAL.TheWorld ~= nil and GLOBAL.TheWorld.minimap or nil
+	if minimap ~= nil and minimap.MiniMap ~= nil then
+		local ok, resolved = pcall(GLOBAL.resolvefilepath, atlas)
+		if ok and resolved ~= nil then
+			minimap.MiniMap:AddAtlas(resolved)
+		end
+	end
+end
+
+local function RegisterMinimapAtlas(atlas)
+	if atlas == nil then
+		return
+	end
+
+	atlas = atlas:gsub("\\", "/")
+	if minimap_atlas_registry[atlas] then
+		return
+	end
+
+	minimap_atlas_registry[atlas] = true
+	AddMinimapAtlas(atlas)
+	TryAddAtlasToRuntime(atlas)
+end
+
+local DEFAULT_MINIMAP_ATLASES = {
+	"images/inventoryimages.xml",
+	"images/inventoryimages1.xml",
+	"images/inventoryimages2.xml",
+	"images/inventoryimages3.xml",
+	"images/icons.xml",
+}
+
+for _, atlas in ipairs(DEFAULT_MINIMAP_ATLASES) do
+	RegisterMinimapAtlas(atlas)
+end
+
+local PREFABS_WITH_VANILLA_ICONS = {
+	alterguardianhatshard = true,
+	axe = true,
+	bee = true,
+	bluegem = true,
+	butterfly = true,
+	canary = true,
+	canary_poisoned = true,
+	chester_eyebone = true,
+	crow = true,
+	fireflies = true,
+	flint = true,
+	gears = true,
+	goldenaxe = true,
+	goldenpickaxe = true,
+	goldenpitchfork = true,
+	goldenshovel = true,
+	goldnugget = true,
+	greengem = true,
+	hammer = true,
+	hutch_fishbowl = true,
+	killerbee = true,
+	mandrake = true,
+	mole = true,
+	moonglassaxe = true,
+	mosquito = true,
+	orangegem = true,
+	pickaxe = true,
+	pitchfork = true,
+	purplegem = true,
+	rabbit = true,
+	razor = true,
+	redgem = true,
+	robin = true,
+	robin_winter = true,
+	rocks = true,
+	seeds = true,
+	shovel = true,
+	slurper = true,
+	spider = true,
+	yellowgem = true,
+}
+
+local function GetVanillaIconName(prefab)
+	local entry = PREFABS_WITH_VANILLA_ICONS[prefab]
+	if entry == nil then
+		return nil
+	end
+
+	if entry == true then
+		return prefab .. ".tex"
+	end
+
+	if type(entry) == "string" then
+		if entry:sub(-4) == ".tex" then
+			return entry
+		end
+		return entry .. ".tex"
+	end
+
+	return nil
+end
+
+local PREFAB_GROUPS = {
+	chestpets = {
+		"chester_eyebone",
+		"hutch",
+		"hutch_fishbowl",
+	},
+
+	densandanimals = {
+		"batcave",
+		"catcoonden",
+		"molehill",
+		"rabbithole",
+		"slurtlehole",
+		"spiderhole",
+	},
+
+	bosses = {
+		"alterguardian_phase3dead",
+		"antlion",
+		"bearger",
+		"beequeen",
+		"beequeenhivegrown",
+		"Celestial_Champion_Phase_1",
+		"Celestial_Champion_Phase_2",
+		"Celestial_Champion_Phase_3",
+		"crabking",
+		"daywalker",
+		"deerclops",
+		"dragonfly",
+		"eyeofterror",
+		"leif",
+		"leif_sparse",
+		"lordfruitfly",
+		"malbatross",
+		"minotaur",
+		"moose",
+		"shadow_bishop",
+		"shadow_knight",
+		"shadow_rook",
+		"toadstool",
+		"toadstool_dark",
+	},
+
+	creatures = {
+		"abigail",
+		"babybeefalo",
+		"bat",
+		"beefalo",
+		"birchnutdrake",
+		"bishop",
+		"bunnyman",
+		"butterfly",
+		"canary",
+		"canary_poisoned",
+		"catcoon",
+		"crawlinghorror",
+		"crawlingnightmare",
+		"crow",
+		"deer",
+		"deer_blue",
+		"deer_red",
+		"eyeplant",
+		"firehound",
+		"frog",
+		"ghost",
+		"glommer",
+		"hound",
+		"icehound",
+		"knight",
+		"koalefant_summer",
+		"koalefant_winter",
+		"krampus",
+		"lavae",
+		"lavae_pet",
+		"lightninggoat",
+		"little_walrus",
+		"mandrake",
+		"mandrake_active",
+		"mandrake_planted",
+		"merm",
+		"mole",
+		"monkey",
+		"mosquito",
+		"mossling",
+		"nightmarebeak",
+		"perd",
+		"pigguard",
+		"pigman",
+		"powder_monkey",
+		"rabbit",
+		"robin",
+		"robin_winter",
+		"rocky",
+		"rook",
+		"slurper",
+		"slurtle",
+		"snurtle",
+		"spider",
+		"spider_dropper",
+		"spider_hider",
+		"spider_spitter",
+		"spider_warrior",
+		"spiderqueen",
+		"stalker",
+		"stalker_atrium",
+		"stalker_forest",
+		"stalker_minion1",
+		"stalker_minion2",
+		"tallbird",
+		"tentacle_pillar",
+		"terrorbeak",
+		"walrus",
+		"warg",
+		"worm",
+	},
+
+	resources = {
+		"alterguardianhatshard",
+		"bluegem",
+		"flint",
+		"gears",
+		"goldnugget",
+		"greengem",
+		"houndbone",
+		"orangegem",
+		"purplegem",
+		"redgem",
+		"rock2",
+		"rocks",
+		"skeleton",
+		"yellowgem",
+		--"opalpreciousgem", (missing)
+	},
+
+	structures = {
+		"ancient_altar",
+		"ancient_altar_broken",
+		"mermhead",
+		"pighead",
+		"pigtorch",
+		"stagehand",
+		"wall_hay",
+		"wall_moonrock",
+		"wall_ruins",
+		"wall_stone",
+		"wall_wood",
+	},
+
+	tools = {
+		"axe",
+		"goldenaxe",
+		"goldenpickaxe",
+		"goldenpitchfork",
+		"goldenshovel",
+		"hammer",
+		"moonglassaxe",
+		"pickaxe",
+		"pitchfork",
+		"razor",
+		"shovel",
+	},
+
+	vegetation = {
+		"blue_mushroom",
+		"carrot_planted",
+		"green_mushroom",
+		"marsh_bush",
+		"red_mushroom",
+		"seeds",
+		"wormlight_plant",
+	},
+}
+
+local PREFAB_GROUP_ORDER = {
+	"chestpets",
+	"densandanimals",
+	"bosses",
+	"creatures",
+	"resources",
+	"structures",
+	"tools",
+	"vegetation",
+}
+
+--local laggables = {
+--	"bee",
+--	"fireflies",
+--	"flower",
+--	"frog",
+--	"grassgekko",
+--	"killerbee",
+--	"tentacle"
+--}
+
+local persistent_icons = GetModConfigData("persistent_icons") ~= false
+
+
+local function ShouldAddIcon(prefab)
+	local setting = GetModConfigData(prefab)
+	if setting == nil then
+		return true
+	end
+	return setting
+end
+
+local function AddMapIcon(prefab)
+	AddPrefabPostInit(prefab, function(inst)
+		if GLOBAL.TheNet ~= nil and GLOBAL.TheNet:IsDedicated() then
+			return
+		end
+
+		local targetprefab = inst.prefab or prefab
+		local fallback_icon = targetprefab .. ".tex"
+
+		local function UpdateIcon()
+			if inst.emi_mapicon == nil then
+				return
+			end
+
+			local iconname = fallback_icon
+			local atlas = "images/icons.xml"
+
+			local function UseVanillaIcon(image)
+				if image ~= nil and GLOBAL.GetInventoryItemAtlas ~= nil then
+					local resolved = GLOBAL.GetInventoryItemAtlas(image)
+					if resolved ~= nil then
+						iconname = image
+						atlas = resolved
+						return true
+					end
+				end
+				return false
+			end
+
+			local vanilla_icon = GetVanillaIconName(targetprefab)
+			if vanilla_icon ~= nil then
+				local has_vanilla = UseVanillaIcon(vanilla_icon)
+				if not has_vanilla and inst.replica ~= nil and inst.replica.inventoryitem ~= nil then
+					UseVanillaIcon(inst.replica.inventoryitem:GetImage())
+				end
+			end
+
+			RegisterMinimapAtlas(atlas)
+
+			inst.emi_mapicon.MiniMapEntity:SetIcon(iconname)
+		end
+
+		local function IsHeld(inst)
+			if inst.components ~= nil then
+				local inventoryitem = inst.components.inventoryitem
+				if inventoryitem ~= nil then
+					if inventoryitem.owner ~= nil then
+						return true
+					end
+
+					if inventoryitem.GetGrandOwner ~= nil and inventoryitem:GetGrandOwner() ~= nil then
+						return true
+					end
+				end
+			end
+
+			if inst.replica ~= nil and inst.replica.inventoryitem ~= nil then
+				if inst.replica.inventoryitem:IsHeld() then
+					return true
+				end
+			end
+
+			if inst.entity:GetParent() ~= nil then
+				return true
+			end
+
+			return false
+		end
+
+		local function RemoveHelper()
+			if inst.emi_mapicon ~= nil then
+				inst.emi_mapicon:Remove()
+				inst.emi_mapicon = nil
+			end
+			if inst.emi_mapicon_refresh_task ~= nil then
+				inst.emi_mapicon_refresh_task:Cancel()
+				inst.emi_mapicon_refresh_task = nil
+			end
+		end
+
+		local function RefreshVisibility()
+			if inst.emi_mapicon == nil then
+				return
+			end
+
+			if inst:HasTag("INLIMBO") then
+				inst.emi_mapicon.MiniMapEntity:SetEnabled(false)
+				return
+			end
+
+			if IsHeld(inst) then
+				inst.emi_mapicon.MiniMapEntity:SetEnabled(false)
+				return
+			end
+
+			inst.emi_mapicon.MiniMapEntity:SetEnabled(true)
+		end
+
+		inst:DoTaskInTime(0, function()
+			if inst.entity == nil or not inst.entity:IsValid() then
+				return
+			end
+
+			if inst.emi_mapicon ~= nil then
+				RefreshVisibility()
+				return
+			end
+
+			local helper = CreateEntity()
+			if helper == nil then
+				return
+			end
+
+			helper.persists = false
+			helper.entity:SetCanSleep(false)
+			helper:AddTag("CLASSIFIED")
+			helper:AddTag("NOBLOCK")
+			helper:AddTag("NOCLICK")
+
+			helper.entity:AddTransform()
+			helper.entity:AddMiniMapEntity()
+
+			helper.entity:SetParent(inst.entity)
+			helper.MiniMapEntity:SetCanUseCache(persistent_icons)
+			helper.MiniMapEntity:SetDrawOverFogOfWar(persistent_icons)
+
+			inst.emi_mapicon = helper
+			UpdateIcon()
+			RefreshVisibility()
+
+			if inst.emi_mapicon_refresh_task == nil then
+				inst.emi_mapicon_refresh_task = inst:DoPeriodicTask(0.25, RefreshVisibility)
+			end
+		end)
+
+		inst:ListenForEvent("imagechange", UpdateIcon)
+		inst:ListenForEvent("onputininventory", RefreshVisibility)
+		inst:ListenForEvent("ondropped", RefreshVisibility)
+		inst:ListenForEvent("enterlimbo", RefreshVisibility)
+		inst:ListenForEvent("exitlimbo", RefreshVisibility)
+		inst:ListenForEvent("onremove", RemoveHelper)
+	end)
+end
+
+function AddIconsMap(group)
+	for entities_count = 1, #group do
+		local prefab = group[entities_count]
+		if ShouldAddIcon(prefab) then
+			AddMapIcon(prefab)
+		end
+	end
+end
+
+for _, group_name in ipairs(PREFAB_GROUP_ORDER) do
+	local group = PREFAB_GROUPS[group_name]
+	if group ~= nil then
+		AddIconsMap(group)
+	end
+end
