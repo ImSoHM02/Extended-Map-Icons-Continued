@@ -216,6 +216,7 @@ local PREFAB_GROUPS = {
 		"stalker_minion1",
 		"stalker_minion2",
 		"tallbird",
+		"tentacle",
 		"tentacle_pillar",
 		"terrorbeak",
 		"walrus",
@@ -234,7 +235,6 @@ local PREFAB_GROUPS = {
 		"orangegem",
 		"purplegem",
 		"redgem",
-		"rock2",
 		"rocks",
 		"skeleton",
 		"yellowgem",
@@ -272,6 +272,7 @@ local PREFAB_GROUPS = {
 	vegetation = {
 		"blue_mushroom",
 		"carrot_planted",
+		"flower",
 		"green_mushroom",
 		"marsh_bush",
 		"red_mushroom",
@@ -294,11 +295,8 @@ local PREFAB_GROUP_ORDER = {
 --local laggables = {
 --	"bee",
 --	"fireflies",
---	"flower",
---	"frog",
 --	"grassgekko",
 --	"killerbee",
---	"tentacle"
 --}
 
 local persistent_icons = GetModConfigData("persistent_icons") ~= false
