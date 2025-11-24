@@ -2,6 +2,24 @@ description =
 [[
 Adds more icons to your map.
 
+Version 4.0.4 - Staff Wars: The Icon Strikes Back
+- Added the following icons:
+    Brightshade Staff
+    Deconstruction Staff
+    Fire Staff
+    Ice Staff
+    Moon Caller's Staff
+    Star Caller's Staff
+    Telelocator Staff
+    Weather Pain
+    The Lazy Explorer
+    Fruit Fly
+    Garden Hoe
+    Manure
+    Splendid Garden Hoe
+    Walking Cane
+    Wooden Cane
+
 Version 4.0.3 - Petals, Pebbels, Pork, and Poltergeists
 - Added Flowers & Tentacles 
 - Fixed Abigail, Pig, and Boulder (they already exist) icons
@@ -30,7 +48,7 @@ This continues to be a Client Only mod.
 
 name                        = "EMI Continued"
 author                      = "Im So HM02"
-version                     = "4.0.3"
+version                     = "4.0.4"
 forumthread                 = ""
 icon                        = "modicon.tex"
 icon_atlas                  = "modicon.xml"
@@ -428,6 +446,13 @@ configuration_options =
     {
         name    = "frog",
         label   = "Frog",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "fruitfly",
+        label   = "Fruit Fly (Non-Friendly)",
         options = Options,
         default = true,
     },
@@ -840,6 +865,13 @@ configuration_options =
     },
 
     {
+        name    = "poop",
+        label   = "Manure",
+        options = Options,
+        default = true,
+    },
+
+    {
         name    = "orangegem",
         label   = "Orangegem",
         options = Options,
@@ -961,6 +993,20 @@ configuration_options =
 
   Title("Tools"),
     {
+        name    = "cane",
+        label   = "Walking Cane",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "walking_stick",
+        label   = "Wooden Cane",
+        options = Options,
+        default = true,
+    },
+
+    {
         name    = "axe",
         label   = "Axe",
         options = Options,
@@ -996,8 +1042,85 @@ configuration_options =
     },
 
     {
+        name    = "farm_hoe",
+        label   = "Garden Hoe",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "golden_farm_hoe",
+        label   = "Splendid Garden Hoe",
+        options = Options,
+        default = true,
+    },
+
+    {
         name    = "hammer",
         label   = "Hammer",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "orangestaff",
+        label   = "The Lazy Explorer",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "icestaff",
+        label   = "Ice Staff",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "greenstaff",
+        label   = "Deconstruction Staff",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "yellowstaff",
+        label   = "Star Caller's Staff",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "telestaff",
+        label   = "Telelocator Staff",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "firestaff",
+        label   = "Fire Staff",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "staff_lunarplant",
+        label   = "Brightshade Staff",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "staff_tornado",
+        label   = "Weather Pain",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "opalstaff",
+        label   = "Moon Caller's Staff",
         options = Options,
         default = true,
     },
