@@ -16,6 +16,14 @@ Adds minimap icons for dozens of world objects so you can spot resources, mobs, 
 
 ## Changelog
 
+**Version 4.0.5 — Stumped by the Rook**
+
+- Added:
+  - Rook
+  - Damaged Clockwork Rook
+- Fixed:
+  - Hollow Stump
+
 **Version 4.0.4 — Staff Wars: The Icon Strikes Back**
 
 - Added the following icons:

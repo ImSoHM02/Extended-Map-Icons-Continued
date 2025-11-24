@@ -157,6 +157,7 @@ local PREFAB_GROUPS = {
 		"malbatross",
 		"minotaur",
 		"moose",
+		"rook_nightmare",
 		"shadow_bishop",
 		"shadow_knight",
 		"shadow_rook",

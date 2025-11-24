@@ -2,6 +2,13 @@ description =
 [[
 Adds more icons to your map.
 
+Version 4.0.5 - Stumped by the Rook
+- Added:
+    Rook
+    Damaged Clockwork Rook
+- Fixed:
+    Hollow Stump
+
 Version 4.0.4 - Staff Wars: The Icon Strikes Back
 - Added the following icons:
     Brightshade Staff
@@ -48,7 +55,7 @@ This continues to be a Client Only mod.
 
 name                        = "EMI Continued"
 author                      = "Im So HM02"
-version                     = "4.0.4"
+version                     = "4.0.5"
 forumthread                 = ""
 icon                        = "modicon.tex"
 icon_atlas                  = "modicon.xml"
@@ -273,6 +280,14 @@ configuration_options =
         options = Options,
         default = true,
     },
+
+    {
+        name    = "rook_nightmare",
+        label   = "Rook Nightmare",
+        options = Options,
+        default = true,
+    },
+
 
     {
         name    = "shadow_bishop",
