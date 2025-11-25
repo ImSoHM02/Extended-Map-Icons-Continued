@@ -78,6 +78,7 @@ local PREFABS_WITH_VANILLA_ICONS = {
 	opalstaff = true,
 	orangestaff = true,
 	orangegem = true,
+	pigtorch = true,
 	pickaxe = true,
 	pitchfork = true,
 	poop = true,
@@ -104,6 +105,7 @@ local PREFABS_WITH_VANILLA_ICONS = {
 local PREFABS_WITH_CUSTOM_ICON_OVERRIDES = {
 	batcave = true,
 	catcoonden = true,
+	monkeybarrel = true,
 	molehill = true,
 	rabbithole = true,
 	slurtlehole = true,
@@ -182,6 +184,7 @@ local PREFAB_GROUPS = {
 	densandanimals = {
 		"batcave",
 		"catcoonden",
+		"monkeybarrel",
 		"molehill",
 		"rabbithole",
 		"slurtlehole",
@@ -239,7 +242,6 @@ local PREFAB_GROUPS = {
 		"frog",
 		"fruitfly",
 		"ghost",
-		"glommer",
 		"hound",
 		"icehound",
 		"knight",
@@ -289,6 +291,7 @@ local PREFAB_GROUPS = {
 		"terrorbeak",
 		"walrus",
 		"warg",
+		"warglet",
 		"worm",
 	},
 

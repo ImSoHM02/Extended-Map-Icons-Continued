@@ -16,6 +16,23 @@ Adds minimap icons for dozens of world objects so you can spot resources, mobs, 
 
 ## Changelog
 
+**Version 4.0.7 — Be There Or Be Square: Part 2**
+
+- Added:
+  - Ancient Guardian
+  - Bunnyman
+  - Crab King
+  - Gobbler
+  - Malbatross
+  - Monkey
+  - Pig Torch
+  - Rock Lobster
+  - Spiky Bush
+  - Varg
+  - Varglet
+- Improved:
+  - Splumonkey Pods now force their custom minimap icon
+
 **Version 4.0.6 — Hole Lotta Icons**
 
 - Added:

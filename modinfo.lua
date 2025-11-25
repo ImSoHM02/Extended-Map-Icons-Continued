@@ -2,6 +2,22 @@ description =
 [[
 Adds more icons to your map.
 
+Version 4.0.7 - Be There Or Be Square: Part 2
+- Added:
+    Ancient Guardian
+    Bunnyman
+    Crab King
+    Gobbler
+    Malbatross
+    Monkey
+    Pig Torch
+    Rock Lobster
+    Spiky Bush
+    Varg
+    Varglet
+- Improved:
+  - Splumonkey Pods now force their custom minimap icon
+
 Version 4.0.6 - Hole Lotta Icons
 - Added:
     Animal Track
@@ -72,7 +88,7 @@ This continues to be a Client Only mod.
 
 name                        = "EMI Continued"
 author                      = "Im So HM02"
-version                     = "4.0.6"
+version                     = "4.0.7"
 forumthread                 = ""
 icon                        = "modicon.tex"
 icon_atlas                  = "modicon.xml"
@@ -128,6 +144,13 @@ configuration_options =
         options = Options,
         default = true,
     },
+
+--    {
+--        name    = "monkeybarrel",
+--        label   = "Splumonkey Pod",
+--        options = Options,
+--        default = true,
+--    },
 
     {
         name    = "molehill",
@@ -490,13 +513,6 @@ configuration_options =
     },
 
     {
-        name    = "glommer",
-        label   = "Glommer",
-        options = Options,
-        default = true,
-    },
-
-    {
         name    = "hound",
         label   = "Hound",
         options = Options,
@@ -835,6 +851,13 @@ configuration_options =
     {
         name    = "warg",
         label   = "Warg",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "warglet",
+        label   = "Varglet",
         options = Options,
         default = true,
     },
