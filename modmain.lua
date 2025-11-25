@@ -101,6 +101,15 @@ local PREFABS_WITH_VANILLA_ICONS = {
 	walking_stick = true,
 }
 
+local PREFABS_WITH_CUSTOM_ICON_OVERRIDES = {
+	batcave = true,
+	catcoonden = true,
+	molehill = true,
+	rabbithole = true,
+	slurtlehole = true,
+	spiderhole = true,
+}
+
 local function GetVanillaIconName(prefab)
 	local entry = PREFABS_WITH_VANILLA_ICONS[prefab]
 	if entry == nil then
@@ -121,10 +130,52 @@ local function GetVanillaIconName(prefab)
 	return nil
 end
 
+local function GetCustomIconOverride(prefab)
+	local entry = PREFABS_WITH_CUSTOM_ICON_OVERRIDES[prefab]
+	if entry == nil then
+		return nil, nil
+	end
+
+	local atlas = "images/icons.xml"
+	local image = prefab .. ".tex"
+
+	if entry == true then
+		return image, atlas
+	end
+
+	local entry_type = type(entry)
+
+	if entry_type == "string" then
+		if entry:sub(-4) == ".tex" then
+			image = entry
+		else
+			image = entry .. ".tex"
+		end
+		return image, atlas
+	end
+
+	if entry_type == "table" then
+		if entry.image ~= nil then
+			if entry.image:sub(-4) == ".tex" then
+				image = entry.image
+			else
+				image = entry.image .. ".tex"
+			end
+		end
+
+		if entry.atlas ~= nil then
+			atlas = entry.atlas
+		end
+
+		return image, atlas
+	end
+
+	return image, atlas
+end
+
 local PREFAB_GROUPS = {
 	chestpets = {
 		"chester_eyebone",
-		"hutch",
 		"hutch_fishbowl",
 	},
 
@@ -213,6 +264,7 @@ local PREFAB_GROUPS = {
 		"pigman",
 		"powder_monkey",
 		"rabbit",
+		"ruins_shadeling",
 		"robin",
 		"robin_winter",
 		"rocky",
@@ -242,7 +294,9 @@ local PREFAB_GROUPS = {
 
 	resources = {
 		"alterguardianhatshard",
+		"animal_track",
 		"bluegem",
+		"dirtpile",
 		"flint",
 		"gears",
 		"goldnugget",
@@ -262,6 +316,7 @@ local PREFAB_GROUPS = {
 		"ancient_altar",
 		"ancient_altar_broken",
 		"mermhead",
+		"mermhouse",
 		"pighead",
 		"pigtorch",
 		"stagehand",
@@ -369,11 +424,19 @@ local function AddMapIcon(prefab)
 				return false
 			end
 
-			local vanilla_icon = GetVanillaIconName(targetprefab)
-			if vanilla_icon ~= nil then
-				local has_vanilla = UseVanillaIcon(vanilla_icon)
-				if not has_vanilla and inst.replica ~= nil and inst.replica.inventoryitem ~= nil then
-					UseVanillaIcon(inst.replica.inventoryitem:GetImage())
+			local custom_icon, custom_atlas = GetCustomIconOverride(targetprefab)
+			if custom_icon ~= nil then
+				iconname = custom_icon
+				if custom_atlas ~= nil then
+					atlas = custom_atlas
+				end
+			else
+				local vanilla_icon = GetVanillaIconName(targetprefab)
+				if vanilla_icon ~= nil then
+					local has_vanilla = UseVanillaIcon(vanilla_icon)
+					if not has_vanilla and inst.replica ~= nil and inst.replica.inventoryitem ~= nil then
+						UseVanillaIcon(inst.replica.inventoryitem:GetImage())
+					end
 				end
 			end
 
@@ -484,6 +547,31 @@ local function AddMapIcon(prefab)
 	end)
 end
 
+local function OverrideExistingMapIcon(prefab)
+	AddPrefabPostInit(prefab, function(inst)
+		if GLOBAL.TheNet ~= nil and GLOBAL.TheNet:IsDedicated() then
+			return
+		end
+
+		local function ApplyOverride()
+			local iconname, atlas = GetCustomIconOverride(prefab)
+			if iconname == nil or inst.MiniMapEntity == nil then
+				return
+			end
+
+			atlas = atlas or "images/icons.xml"
+			RegisterMinimapAtlas(atlas)
+			inst.MiniMapEntity:SetIcon(iconname)
+		end
+
+		if inst.MiniMapEntity ~= nil then
+			ApplyOverride()
+		else
+			inst:DoTaskInTime(0, ApplyOverride)
+		end
+	end)
+end
+
 function AddIconsMap(group)
 	for entities_count = 1, #group do
 		local prefab = group[entities_count]
@@ -491,6 +579,10 @@ function AddIconsMap(group)
 			AddMapIcon(prefab)
 		end
 	end
+end
+
+for prefab, _ in pairs(PREFABS_WITH_CUSTOM_ICON_OVERRIDES) do
+	OverrideExistingMapIcon(prefab)
 end
 
 for _, group_name in ipairs(PREFAB_GROUP_ORDER) do

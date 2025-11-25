@@ -2,6 +2,23 @@ description =
 [[
 Adds more icons to your map.
 
+Version 4.0.6 - Hole Lotta Icons
+- Added:
+    Animal Track
+    Bat Cave
+    Burrow
+    Clockwork Bishop
+    Hollow Stump
+    Merm
+    Merm House
+    Rabbit Hole
+    Resting Horror
+    Slurtle Mound
+    Spilagmite
+    Suspicious Dirt Pile
+- Improved:
+    Dens now use custom minimap art instead of critter stand-ins
+
 Version 4.0.5 - Stumped by the Rook
 - Added:
     Rook
@@ -55,7 +72,7 @@ This continues to be a Client Only mod.
 
 name                        = "EMI Continued"
 author                      = "Im So HM02"
-version                     = "4.0.5"
+version                     = "4.0.6"
 forumthread                 = ""
 icon                        = "modicon.tex"
 icon_atlas                  = "modicon.xml"
@@ -86,13 +103,6 @@ configuration_options =
     {
         name    = "chester_eyebone",
         label   = "Chester Eyebone",
-        options = Options,
-        default = true,
-    },
-
-    {
-        name    = "hutch",
-        label   = "Hutch",
         options = Options,
         default = true,
     },
@@ -655,8 +665,15 @@ configuration_options =
     },
 
     {
-        name    = "robin",
-        label   = "Robin",
+        name    = "rabbit",
+        label   = "Rabbit",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "ruins_shadeling",
+        label   = "Resting Horror",
         options = Options,
         default = true,
     },
@@ -838,8 +855,22 @@ configuration_options =
     },
 
     {
+        name    = "animal_track",
+        label   = "Animal Track",
+        options = Options,
+        default = true,
+    },
+
+    {
         name    = "bluegem",
         label   = "Bluegem",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "dirtpile",
+        label   = "Suspicious Dirt Pile",
         options = Options,
         default = true,
     },
@@ -946,6 +977,13 @@ configuration_options =
     {
         name    = "mermhead",
         label   = "Mermhead",
+        options = Options,
+        default = true,
+    },
+
+    {
+        name    = "mermhouse",
+        label   = "Merm House",
         options = Options,
         default = true,
     },

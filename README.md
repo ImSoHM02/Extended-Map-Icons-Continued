@@ -16,6 +16,24 @@ Adds minimap icons for dozens of world objects so you can spot resources, mobs, 
 
 ## Changelog
 
+**Version 4.0.6 — Hole Lotta Icons**
+
+- Added:
+  - Animal Track
+  - Bat Cave
+  - Burrow
+  - Clockwork Bishop
+  - Hollow Stump
+  - Merm
+  - Merm House
+  - Rabbit Hole
+  - Resting Horror
+  - Slurtle Mound
+  - Spilagmite
+  - Suspicious Dirt Pile
+- Improved:
+  - Dens now use custom minimap art instead of critter stand-ins
+
 **Version 4.0.5 — Stumped by the Rook**
 
 - Added:
