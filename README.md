@@ -16,6 +16,10 @@ Adds minimap icons for dozens of world objects so you can spot resources, mobs, 
 
 ## Changelog
 
+**Version 4.0.8 — Jade Atlas**
+
+- Added Simplified Chinese translations for the entire configuration menu (section headers, prefab labels, and option descriptions).
+
 **Version 4.0.7 — Be There Or Be Square: Part 2**
 
 - Added:

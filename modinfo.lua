@@ -2,6 +2,10 @@ description =
 [[
 Adds more icons to your map.
 
+Version 4.0.8 - Jade Atlas
+- Added:
+    Simplified Chinese translations for every configuration section, label, and option.
+
 Version 4.0.7 - Be There Or Be Square: Part 2
 - Added:
     Ancient Guardian
@@ -88,7 +92,7 @@ This continues to be a Client Only mod.
 
 name                        = "EMI Continued"
 author                      = "Im So HM02"
-version                     = "4.0.7"
+version                     = "4.0.8"
 forumthread                 = ""
 icon                        = "modicon.tex"
 icon_atlas                  = "modicon.xml"
@@ -101,15 +105,206 @@ client_only_mod             = true
 
 --Configs
 
-local Options = {{description = "Show", data = true}, {description = "Hide", data = false}}
+local function T(en, zh)
+    if ChooseTranslationTable ~= nil then
+        return ChooseTranslationTable({en, zh = zh})
+    end
+    return en
+end
+
+local Options = {
+    {description = T("Show", "显示"), data = true},
+    {description = T("Hide", "隐藏"), data = false},
+}
 
 local Empty = {{description = "", data = 0}}
 
+local TITLE_TRANSLATIONS_ZH = {
+    ["Chest Pets"] = "箱子宠物",
+    ["Dens and Animals"] = "巢穴与动物",
+    ["Bosses"] = "首领",
+    ["Creatures"] = "生物",
+    ["Resources"] = "资源",
+    ["Structures"] = "建筑",
+    ["Tools"] = "工具",
+    ["Vegetation"] = "植被",
+    ["Misc Settings"] = "其他设置",
+}
+
 local function Title(title) --Allows use of an empty label as a header
-return {name=title, options=Empty, default=0,}
+return {name = T(title, TITLE_TRANSLATIONS_ZH[title]), options = Empty, default = 0,}
 end
 
 local SEPARATOR = Title("")
+
+local LABEL_TRANSLATIONS_ZH = {
+    chester_eyebone = "眼骨", -- Chester Eyebone
+    hutch_fishbowl = "星空", -- Hutch Fishbowl
+    batcave = "蝙蝠洞", -- Batcave
+    catcoonden = "空心树桩", -- Catcoonden
+    molehill = "鼹鼠丘", -- Molehill
+    rabbithole = "兔洞", -- Rabbithole
+    slurtlehole = "蛞蝓龟窝", -- Slurtlehole
+    spiderhole = "蛛网岩", -- Spiderhole
+    alterguardian_phase3dead = "被击败的天体英雄", -- Alterguardian Phase3dead
+    antlion = "蚁狮", -- Antlion
+    bearger = "熊獾", -- Bearger
+    beequeen = "蜂王", -- Beequeen
+    beequeenhivegrown = "巨大蜂窝", -- Beequeenhivegrown
+    crabking = "帝王蟹", -- Crabking
+    daywalker = "梦魇疯猪", -- Daywalker
+    deerclops = "独眼巨鹿", -- Deerclops
+    dragonfly = "龙蝇", -- Dragonfly
+    eyeofterror = "恐怖之眼", -- Eyeofterror
+    leif = "树精守卫", -- Leif
+    leif_sparse = "树精守卫", -- Leif Sparse
+    lordfruitfly = "果蝇王", -- Lordfruitfly
+    malbatross = "邪天翁", -- Malbatross
+    minotaur = "远古守护者", -- Minotaur
+    rook_nightmare = "损坏的发条战车", -- Rook Nightmare
+    shadow_bishop = "暗影主教", -- Shadow Bishop
+    shadow_knight = "暗影骑士", -- Shadow Knight
+    shadow_rook = "暗影战车", -- Shadow Rook
+    toadstool = "毒菌蟾蜍", -- Toadstool
+    toadstool_dark = "悲惨的毒菌蟾蜍", -- Toadstool Dark
+    abigail = "阿比盖尔", -- Abigail
+    babybeefalo = "小皮弗娄牛", -- Babybeefalo
+    bat = "洞穴蝙蝠", -- Bat
+    beefalo = "皮弗娄牛", -- Beefalo
+    birchnutdrake = "桦栗果精", -- Birchnutdrake
+    bishop = "发条主教", -- Bishop
+    bunnyman = "兔人", -- Bunnyman
+    butterfly = "蝴蝶", -- Butterfly
+    canary = "金丝雀", -- Canary
+    canary_poisoned = "金丝雀（中毒）", -- Canary Poisoned
+    catcoon = "浣猫", -- Catcoon
+    crawlinghorror = "爬行恐惧", -- Crawlinghorror
+    crawlingnightmare = "爬行梦魇", -- Crawlingnightmare
+    crow = "乌鸦", -- Crow
+    deer = "无眼鹿", -- Deer
+    eyeplant = "眼球草", -- Eyeplant
+    firehound = "红色猎犬", -- Firehound
+    frog = "青蛙", -- Frog
+    fruitfly = "果蝇（非友好）", -- Fruit Fly (Non-Friendly)
+    ghost = "幽灵", -- Ghost
+    hound = "猎犬", -- Hound
+    icehound = "蓝色猎犬", -- Icehound
+    knight = "发条骑士", -- Knight
+    koalefant_summer = "考拉象", -- Koalefant Summer
+    koalefant_winter = "考拉象", -- Koalefant Winter
+    krampus = "坎普斯", -- Krampus
+    lavae = "岩浆虫", -- Lavae
+    lavae_pet = "超级可爱岩浆虫", -- Lavae Pet
+    lightninggoat = "伏特羊", -- Lightninggoat
+    little_walrus = "小海象", -- Little Walrus
+    mandrake = "曼德拉草", -- Mandrake
+    mandrake_active = "曼德拉草", -- Mandrake Active
+    mandrake_planted = "曼德拉草", -- Mandrake Planted
+    merm = "鱼人", -- Merm
+    mole = "鼹鼠", -- Mole
+    monkey = "穴居猴", -- Monkey
+    mosquito = "蚊子", -- Mosquito
+    mossling = "麋鹿鹅幼崽", -- Mossling
+    nightmarebeak = "梦魇尖喙", -- Nightmarebeak
+    perd = "火鸡", -- Gobbler
+    pigguard = "猪人守卫", -- Pigguard
+    pigman = "猪人", -- Pigman
+    powder_monkey = "火药猴", -- Powder Monkey
+    rabbit = "兔子", -- Rabbit
+    ruins_shadeling = "休憩恐惧", -- Resting Horror
+    robin_winter = "雪雀", -- Robin Winter
+    rocky = "石虾", -- Rocky
+    rook = "发条战车", -- Rook
+    slurper = "啜食者", -- Slurper
+    slurtle = "蛞蝓龟", -- Slurtle
+    snurtle = "蜗牛龟", -- Snurtle
+    spider = "蜘蛛", -- Spider
+    spider_dropper = "穴居悬蛛", -- Spider Dropper
+    spider_hider = "洞穴蜘蛛", -- Spider Hider
+    spider_spitter = "喷吐蜘蛛", -- Spider Spitter
+    spider_warrior = "蜘蛛战士", -- Spider Warrior
+    spiderqueen = "蜘蛛女王", -- Spiderqueen
+    stalker = "复活的骨架", -- Stalker
+    stalker_atrium = "远古织影者", -- Stalker Atrium
+    tallbird = "高脚鸟", -- Tallbird
+    tentacle = "触手", -- Tentacle
+    tentacle_pillar = "大触手", -- Tentacle Pillar
+    terrorbeak = "恐怖尖喙", -- Terrorbeak
+    walrus = "海象", -- Walrus
+    warg = "座狼", -- Warg
+    warglet = "青年座狼", -- Varglet
+    worm = "洞穴蠕虫", -- Worm
+    alterguardianhatshard = "启迪碎片", -- Alterguardianhatshard
+    animal_track = "动物足迹", -- Animal Track
+    bluegem = "蓝宝石", -- Bluegem
+    dirtpile = "可疑的土堆", -- Suspicious Dirt Pile
+    flint = "燧石", -- Flint
+    gears = "齿轮", -- Gears
+    goldnugget = "金块", -- Goldnugget
+    greengem = "绿宝石", -- Greengem
+    houndbone = "犬骨", -- Houndbone
+    poop = "粪肥", -- Manure
+    orangegem = "橙宝石", -- Orangegem
+    purplegem = "紫宝石", -- Purplegem
+    redgem = "红宝石", -- Redgem
+    rocks = "石头", -- Rocks
+    skeleton = "骷髅", -- Skeleton
+    yellowgem = "黄宝石", -- Yellowgem
+    ancient_altar = "远古伪科学站", -- Ancient Altar
+    ancient_altar_broken = "损坏的远古伪科学站", -- Ancient Altar Broken
+    mermhead = "鱼人头", -- Mermhead
+    mermhouse = "漏雨的小屋", -- Merm House
+    pighead = "猪头", -- Pighead
+    pigtorch = "猪火炬", -- Pigtorch
+    stagehand = "舞台之手", -- Stagehand
+    wall_hay = "草墙", -- Wall Hay
+    wall_moonrock = "月岩墙", -- Wall Moonrock
+    wall_ruins = "铥墙", -- Wall Ruins
+    wall_stone = "石墙", -- Wall Stone
+    wall_wood = "木墙", -- Wall Wood
+    cane = "步行手杖", -- Walking Cane
+    walking_stick = "木手杖", -- Wooden Cane
+    axe = "斧头", -- Axe
+    goldenaxe = "黄金斧头", -- Goldenaxe
+    goldenpickaxe = "黄金鹤嘴锄", -- Goldenpickaxe
+    goldenpitchfork = "黄金干草叉", -- Goldenpitchfork
+    goldenshovel = "黄金铲子", -- Goldenshovel
+    farm_hoe = "园艺锄", -- Garden Hoe
+    golden_farm_hoe = "黄金园艺锄", -- Splendid Garden Hoe
+    hammer = "锤子", -- Hammer
+    orangestaff = "懒人魔杖", -- The Lazy Explorer
+    icestaff = "冰魔杖", -- Ice Staff
+    greenstaff = "拆解魔杖", -- Deconstruction Staff
+    yellowstaff = "唤星者魔杖", -- Star Caller's Staff
+    telestaff = "传送魔杖", -- Telelocator Staff
+    firestaff = "火魔杖", -- Fire Staff
+    staff_lunarplant = "亮茄魔杖", -- Brightshade Staff
+    staff_tornado = "天气风向标", -- Weather Pain
+    opalstaff = "唤月者魔杖", -- Moon Caller's Staff
+    moonglassaxe = "月光玻璃斧", -- Moonglassaxe
+    pickaxe = "鹤嘴锄", -- Pickaxe
+    pitchfork = "干草叉", -- Pitchfork
+    razor = "剃刀", -- Razor
+    shovel = "铲子", -- Shovel
+    blue_mushroom = "蓝蘑菇", -- Blue Mushroom
+    carrot_planted = "胡萝卜", -- Carrot Planted
+    flower = "花", -- Flowers
+    green_mushroom = "绿蘑菇", -- Green Mushroom
+    marsh_bush = "尖刺灌木", -- Marsh Bush
+    red_mushroom = "红蘑菇", -- Red Mushroom
+    seeds = "种子", -- Seeds
+    wormlight_plant = "神秘植物", -- Wormlight Plant
+    Celestial_Champion_Phase_1 = "天体英雄·第一阶段", -- Celestial Champion Phase 1
+    Celestial_Champion_Phase_2 = "天体英雄·第二阶段", -- Celestial Champion Phase 2
+    Celestial_Champion_Phase_3 = "天体英雄·第三阶段", -- Celestial Champion Phase 3
+    deer_blue = "蓝色无眼鹿", -- Deer Blue
+    deer_red = "红色无眼鹿", -- Deer Red
+    moose = "麋鹿鹅", -- Moose
+    stalker_forest = "森林织影者", -- Stalker Forest
+    stalker_minion1 = "编织暗影", -- Stalker Minion1
+    stalker_minion2 = "编织暗影", -- Stalker Minion2
+    persistent_icons = "图标持续性", -- Icon Persistence
+}
 
 --Settings
 
@@ -1299,10 +1494,17 @@ configuration_options =
         label   = "Icon Persistence",
         options =
         {
-            {description = "Stay Visible", data = true},
-            {description = "Nearby Only", data = false},
+            {description = T("Stay Visible", "始终可见"), data = true},
+            {description = T("Nearby Only", "仅附近"), data = false},
         },
         default = true,
     },
 }
+
+for i = 1, #configuration_options do
+    local option = configuration_options[i]
+    if option ~= nil and option.label ~= nil then
+        option.label = T(option.label, LABEL_TRANSLATIONS_ZH[option.name])
+    end
+end
   
