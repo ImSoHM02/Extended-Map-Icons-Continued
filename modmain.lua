@@ -10,7 +10,7 @@ local minimap_atlas_registry = {}
 local function TryAddAtlasToRuntime(atlas)
 	local minimap = GLOBAL.TheWorld ~= nil and GLOBAL.TheWorld.minimap or nil
 	if minimap ~= nil and minimap.MiniMap ~= nil then
-		local ok, resolved = pcall(GLOBAL.resolvefilepath, atlas)
+		local ok, resolved = GLOBAL.pcall(GLOBAL.resolvefilepath, atlas)
 		if ok and resolved ~= nil then
 			minimap.MiniMap:AddAtlas(resolved)
 		end

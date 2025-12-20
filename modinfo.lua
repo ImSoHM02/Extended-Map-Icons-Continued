@@ -2,6 +2,10 @@ description =
 [[
 Adds more icons to your map.
 
+Version 4.0.9 - Runtime Resilience
+- Fixed:
+    Resolved a sandbox crash when registering minimap atlases by using GLOBAL.pcall during runtime.
+
 Version 4.0.8 - Jade Atlas
 - Added:
     Simplified Chinese translations for every configuration section, label, and option.
@@ -92,7 +96,7 @@ This continues to be a Client Only mod.
 
 name                        = "EMI Continued"
 author                      = "Im So HM02"
-version                     = "4.0.8"
+version                     = "4.0.9"
 forumthread                 = ""
 icon                        = "modicon.tex"
 icon_atlas                  = "modicon.xml"
