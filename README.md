@@ -16,6 +16,11 @@ Adds minimap icons for dozens of world objects so you can spot resources, mobs, 
 
 ## Changelog
 
+**Version 4.0.9 - Runtime Resilience**
+
+- Fixed:
+  - Resolved a sandbox crash when registering minimap atlases by using GLOBAL.pcall during runtime.
+
 **Version 4.0.8 — Jade Atlas**
 
 - Added Simplified Chinese translations for the entire configuration menu (section headers, prefab labels, and option descriptions).
